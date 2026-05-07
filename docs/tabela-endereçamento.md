@@ -6,7 +6,7 @@
 
 | Dispositivo       | Interface  | Endereço IP     | Máscara         | Descrição                          |
 |-------------------|------------|-----------------|-----------------|------------------------------------|
-| RTR-AGENCIA-BORDA | G0/0/1     | 200.10.10.2     |30 255.255.255.252  | Internet                      |
+| RTR-AGENCIA-BORDA | G0/0/1     | 200.10.10.2     |/30 255.255.255.252  | Internet                      |
 | RTR-AGENCIA-BORDA | G0/0/0    | 10.0.0.1        | /30 255.255.255.252 | Link ponto-a-ponto → SW-CORE-L3 |             |
 | SW-CORE-L3        | G1/0/1     | 10.0.0.2        | /30 255.255.255.252 | Link ponto-a-ponto → RTR-BORDA  |
 | SW-CORE-L3        | G1/0/2     | —               | —               | Trunk → SW-ACESSO-A (VLANs 10,30,31,99) |
