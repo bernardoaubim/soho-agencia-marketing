@@ -1,0 +1,246 @@
+SW-ACESSO-B#show run
+Building configuration...
+
+Current configuration : 5840 bytes
+!
+version 15.0
+service timestamps log datetime msec
+no service timestamps debug datetime msec
+service password-encryption
+!
+hostname SW-ACESSO-B
+!
+enable secret 5 $1$mERr$R054EdnfgcW9/AOEL39pj1
+!
+!
+!
+ip ssh version 2
+ip domain-name agencia.local
+!
+username NetAdmin secret 5 $1$mERr$JPD/pYGHneshDVepDoZSC/
+!
+!
+!
+spanning-tree mode rapid-pvst
+spanning-tree extend system-id
+!
+interface FastEthernet0/1
+ description PCS_DIRETORIA
+ switchport access vlan 20
+ switchport mode access
+ switchport port-security
+ switchport port-security mac-address sticky 
+ switchport port-security violation restrict 
+ switchport port-security mac-address sticky 0050.0F19.70BC
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface FastEthernet0/2
+ description PCS_DIRETORIA
+ switchport access vlan 20
+ switchport mode access
+ switchport port-security
+ switchport port-security mac-address sticky 
+ switchport port-security violation restrict 
+ switchport port-security mac-address sticky 0090.0CAA.0D90
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface FastEthernet0/3
+ description PCS_DIRETORIA
+ switchport access vlan 20
+ switchport mode access
+ switchport port-security
+ switchport port-security mac-address sticky 
+ switchport port-security violation restrict 
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface FastEthernet0/4
+ description PCS_DIRETORIA
+ switchport access vlan 20
+ switchport mode access
+ switchport port-security
+ switchport port-security mac-address sticky 
+ switchport port-security violation restrict 
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface FastEthernet0/5
+ description PCS_DIRETORIA
+ switchport access vlan 20
+ switchport mode access
+ switchport port-security
+ switchport port-security mac-address sticky 
+ switchport port-security violation restrict 
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface FastEthernet0/6
+ description PORTA_RESERVA_SEGURANCA
+ shutdown
+!
+interface FastEthernet0/7
+ description PORTA_RESERVA_SEGURANCA
+ shutdown
+!
+interface FastEthernet0/8
+ description PORTA_RESERVA_SEGURANCA
+ shutdown
+!
+interface FastEthernet0/9
+ description PORTA_RESERVA_SEGURANCA
+ shutdown
+!
+interface FastEthernet0/10
+ description PORTA_RESERVA_SEGURANCA
+ switchport mode access
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+ shutdown
+!
+interface FastEthernet0/11
+ description PORTA_RESERVA_SEGURANCA
+ switchport mode access
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+ shutdown
+!
+interface FastEthernet0/12
+ description PORTA_RESERVA_SEGURANCA
+ shutdown
+!
+interface FastEthernet0/13
+ description PORTA_RESERVA_SEGURANCA
+ shutdown
+!
+interface FastEthernet0/14
+ description PORTA_RESERVA_SEGURANCA
+ shutdown
+!
+interface FastEthernet0/15
+ description PORTA_RESERVA_SEGURANCA
+ shutdown
+!
+interface FastEthernet0/16
+ description PORTA_RESERVA_SEGURANCA
+ shutdown
+!
+interface FastEthernet0/17
+ description PORTA_RESERVA_SEGURANCA
+ shutdown
+!
+interface FastEthernet0/18
+ description DISPOSITIVOS_IOT
+ switchport access vlan 40
+ switchport mode access
+ switchport port-security
+ switchport port-security mac-address sticky 
+ switchport port-security violation restrict 
+ switchport port-security mac-address sticky 0005.5E51.181C
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface FastEthernet0/19
+ description DISPOSITIVOS_IOT
+ switchport access vlan 40
+ switchport mode access
+ switchport port-security
+ switchport port-security mac-address sticky 
+ switchport port-security violation restrict 
+ switchport port-security mac-address sticky 0007.ECE4.467B
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface FastEthernet0/20
+ description DISPOSITIVOS_IOT
+ switchport access vlan 40
+ switchport mode access
+ switchport port-security
+ switchport port-security mac-address sticky 
+ switchport port-security violation restrict 
+ switchport port-security mac-address sticky 000D.BD22.DB46
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface FastEthernet0/21
+ description DISPOSITIVOS_IOT
+ switchport access vlan 40
+ switchport mode access
+ switchport port-security
+ switchport port-security mac-address sticky 
+ switchport port-security violation restrict 
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface FastEthernet0/22
+ description DISPOSITIVOS_IOT
+ switchport access vlan 40
+ switchport mode access
+ switchport port-security
+ switchport port-security mac-address sticky 
+ switchport port-security violation restrict 
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface FastEthernet0/23
+ description DISPOSITIVOS_IOT
+ switchport access vlan 40
+ switchport mode access
+ switchport port-security
+ switchport port-security mac-address sticky 
+ switchport port-security violation restrict 
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface FastEthernet0/24
+ description DISPOSITIVOS_IOT
+ switchport access vlan 40
+ switchport mode access
+ switchport port-security
+ switchport port-security mac-address sticky 
+ switchport port-security violation restrict 
+ switchport port-security mac-address sticky 0060.2F11.4B79
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface GigabitEthernet0/1
+ description UPLINK_PARA_CORE
+ switchport trunk allowed vlan 20,40,50,99
+ switchport mode trunk
+!
+interface GigabitEthernet0/2
+ description LINK_WIFI_VISITANTES
+ switchport access vlan 50
+ switchport mode access
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+interface Vlan99
+ ip address 10.0.99.11 255.255.255.0
+!
+ip default-gateway 10.0.99.1
+!
+banner motd ^C ACESSO RESTRITO - SOMENTE PESSOAL AUTORIZADO ^C
+!
+!
+!
+line con 0
+ logging synchronous
+ login local
+ exec-timeout 7 0
+!
+line vty 0 4
+ exec-timeout 7 0
+ login local
+ transport input ssh
+line vty 5 15
+ exec-timeout 7 0
+ login local
+ transport input ssh
+!
+!
+!
+end
